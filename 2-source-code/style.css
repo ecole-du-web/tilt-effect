@@ -12,10 +12,10 @@ body {
 }
 
 .header {
-    padding: 140px 24px 240px;
-    border-bottom: 1px dashed #c0c0c0a0;
+    padding: 180px 24px 40px;
     background: radial-gradient(at center, #363636, #0e0e0e);
     perspective: 2000px;
+    height: 100vh;
 }
 
 .tilted-card {
