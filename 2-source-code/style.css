@@ -11,52 +11,55 @@ body {
   background: #2a2a2a;
 }
 
-.header {
-    padding: 140px 24px 240px;
-    border-bottom: 1px dashed #c0c0c0a0;
-    background: radial-gradient(at center, #363636, #0e0e0e);
-    perspective: 2000px;
+.tilted-section {
+  padding: 180px 24px 40px;
+  background-image: radial-gradient(at center, #4d4d4d, #0e0e0e);
+  height: 100vh;
+  perspective: 2000px;
 }
-
-.tilted-card {
+.tilted-section__card {
   max-width: 1000px;
-  aspect-ratio: 1 / 0.40;
-  /* max-width: 300px;
-  aspect-ratio: 1 / 2; */
+  aspect-ratio: 1 / 0.40; 
+
+   /* max-width: 300px;
+  aspect-ratio: 1 / 1.75;  */
+
   margin: 0 auto;
   border-radius: 25px;
-  font-size: 34px;
   transform-style: preserve-3d;
   pointer-events: none;
+  background-color: #f1f1f1;
   position: relative;
-  /* transition: transform 0.1s linear;
-  will-change: transform; */
+  transition: transform 0.2s ease-out;
 }
-.tilted-card__bg-video {
+.tilted-section__bg-video {
   position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 25px;
   object-fit: cover;
+  border-radius: 25px;
 }
-.tilted-card__button {
-  pointer-events: auto;
+.tilted-section__card-button {
+  pointer-events: auto; 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   min-width: 175px;
   padding: 12px;
   font-size: 20px;
   font-family: Oswald;
   letter-spacing: 2px;
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 5px;
-  border: none;
   text-transform: uppercase;
-  transition: background-color 0.4s ease-out, color 0.4s ease-out;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+  transition: 
+  background-color 0.4s ease-out,
+  color 0.4s ease-out;
 }
-.tilted-card__button:hover {
+
+.tilted-section__card-button:hover {
   background-color: #111;
   color: #f1f1f1;
 }

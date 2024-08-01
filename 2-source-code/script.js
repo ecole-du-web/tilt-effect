@@ -1,41 +1,34 @@
-const header = document.querySelector(".header")
-const tiltedCard = document.querySelector(".tilted-card")
-const tiltedCardButton = document.querySelector(".tilted-card__button")
+const tiltedSection = document.querySelector(".tilted-section")
+const tiltedCard = document.querySelector(".tilted-section__card")
+
+if(window.matchMedia("(pointer:fine)").matches) {
+
+  tiltedSection.addEventListener("mousemove", handleTiltEffect)
+
+  function handleTiltEffect(e){
+    const tiltedSectionDimensions = tiltedSection.getBoundingClientRect()
+
+    const mouseXInSection = e.clientX - tiltedSectionDimensions.left, 
+          mouseYInSection = e.clientY - tiltedSectionDimensions.top
+
+    const elementMiddleX = tiltedSectionDimensions.width / 2,
+          elementMiddleY = tiltedSectionDimensions.height / 2;
+
+    const maxTiltX = 30, 
+          maxTiltY = 30;
 
 
-if (window.matchMedia("(pointer: fine)").matches) {
+    const tiltAngleY = ((mouseXInSection - elementMiddleX) / elementMiddleX) * maxTiltX
+    const tiltAngleX = ((mouseYInSection - elementMiddleY) / elementMiddleY) * maxTiltY
 
-  header.addEventListener("mousemove", handleTiltEffect)
-
-  function handleTiltEffect(e) {
-    const headerDimensions = header.getBoundingClientRect();
-    const mouseXInHeader = e.clientX - headerDimensions.left;
-    const mouseYInHeader = e.clientY - headerDimensions.top;
-
-    const elementMiddleX = headerDimensions.width / 2,
-          elementMiddleY = headerDimensions.height / 2
-
-    const maxTiltX = 30,
-          maxTiltY = 30
-
-    const titlAngleX = ((mouseXInHeader - elementMiddleX) / elementMiddleX) * maxTiltX
-    const tiltAngleY = ((mouseYInHeader - elementMiddleY) / elementMiddleY) * maxTiltY
-
-
-    tiltedCard.style.transform = `rotateY(${titlAngleX}deg) rotateX(${-1 * tiltAngleY}deg)`;
-
-    if (e.target === document.querySelector(".tilted-card__button")) e.stopPropagation()
+    tiltedCard.style.transform = `rotateY(${tiltAngleY}deg) rotateX(${-tiltAngleX}deg)`
+    console.log(elementMiddleX,elementMiddleY)
   }
 
-  header.addEventListener("mouseout", resetTiltOnMouseOut)
-  function resetTiltOnMouseOut() {
-    tiltedCard.style.transform = `rotateY(${0}deg) rotateX(${0}deg)`;
+
+  tiltedSection.addEventListener("mouseout", resetTiltOnMouseOut)
+
+  function resetTiltOnMouseOut(){
+      tiltedCard.style.transform = `rotateY(${0}deg) rotateX(${0}deg)`
   }
-  tiltedCardButton.addEventListener("mousemove", handleTiltEffect)
 }
-
-
-tiltedCardButton.addEventListener('click', () => {
-  console.log("button clicked")
-});
-
